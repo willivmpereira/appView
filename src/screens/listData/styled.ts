@@ -29,6 +29,7 @@ export const ContainerButtons = styled.View`
     flex-direction: row;
     margin: 16px 10px;
     
+    
 `
 
 export const FavoriteButton = styled.TouchableOpacity`

@@ -57,6 +57,28 @@ export const Resume = () => {
     setLoading(false);
   };
 
+  const ageFull = (dateBirthday: any) => {
+
+    dateBirthday = dateBirthday.replace(/-/g, '/')
+
+    const todayData = new Date();
+    const birthDate = new Date(dateBirthday);
+    
+
+    let age = todayData.getFullYear() - birthDate.getFullYear();
+    const month = todayData.getMonth() - birthDate.getMonth();
+
+    if (month < 0 || (month === 0 && todayData.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    return age
+    
+  }
+
+  const idade =  ageFull(userData.birthday);
+ 
+
   if (loading) {
     return (
       <Container>
@@ -108,7 +130,7 @@ export const Resume = () => {
           <HeaderContainer>
             <Text>{userData.name}</Text>
             <TextInfo>Desenvolvedor</TextInfo>
-            <TextInfo>23 anos</TextInfo>
+            <TextInfo>{idade} anos</TextInfo>
           </HeaderContainer>
 
           <InfoContainer>
@@ -125,6 +147,7 @@ export const Resume = () => {
                 <View key={item.id}>
                   <TextInfo>{item.educationalInstitution}</TextInfo>
                   <TextBold>{item.course}</TextBold>
+                  {/* <TextInfo>{item}</TextInfo> */}
                 </View>
               )
               // <TextInfo>Outubro de 1999 - Em andamento</TextInfo>
